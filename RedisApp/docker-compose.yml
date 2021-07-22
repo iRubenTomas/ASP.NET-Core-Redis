@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  redis:
+    image: ${DOCKER_REGISTRY-}redis
+    container_name: BlazerApp
+    build:
+      context: .
+      dockerfile: Redis/Dockerfile
+    restart: on-failure
+
+
+  redisCache:
+    image: redis
+    container_name: Cache_System
+    ports:
+      - "5002:6379"
+    restart: on-failure
